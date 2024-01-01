@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mike Sheliga 12.30.23 URI hw6 weather dashboard using jQuery-openweatherapi-bootstrap -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Per bootstrap webpage, add this at the top, first inside head tag -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- google=EVIL use cdnjs instead. -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" 
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"    
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" 
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <title>Mike Sheliga's Testing of Bootstrap column spacing. </title>
+</head>
+<body>
+    <header>
+        <!-- container fluid => fullwidth in bs, bg-primary works, bg-blue does not -->
+        <!-- use "m-3" not m3 for margin - Only defined 1 thru 5 -->
+        <div class="container-fluid bg-primary p-3 mb-3"> 
+            <!-- text-center works here, even though h3 is within non-centered container-fluid -->
+            <h1 class="text-center"> Mike Sheliga's Testing of Column Margins </h1>
+            <p> Main things seem to be </p>
+            <p> (1) Use unclosed container - row - col - col SubDiv </p>
+            <p> (2) Dont put any text, nor a border after/in the col div </p>
+            <p> (3) container get padding, row get NEGATIVE margin </p>
+            <p> (4) https://stackoverflow.com/questions/51160147/bootstrap-4-how-to-have-margin-between-columns-without-going-over-space 
+                claims that setting MARGINS in the cols "breaks" the bootstrap grid. (padding likely fine)
+            </p>
+            <p> After a huge amount of work, I could no longer find the examples that DONT work. Arghhh! </p>
+        </div>
+    </header>
+
+    <!-- If cols not within a row, they dont seem to work (display all in center) -->
+    <main>
+        <div class="container px-4">
+            <div class="row mx-n5">
+              <div class="col py-3 px-3 border bg-danger">px-4 cont mx-n5 row px-3 col FAILS </div>
+              <div class="col py-3 px-3 border bg-light">Note container "unclosed" surrounds row. </div>
+            </div>
+        </div>
+
+        <div class="container px-4">
+            <div class="row mx-n5">
+              <div class="col py-3 px-3 bg-danger">px-4 cont mx-n5 row px-3 col FAILS </div>
+              <div class="col py-3 px-3 bg-light">Same as above but no border in col </div>
+            </div>
+        </div>
+
+        <div class="container px-4">
+            <div class="row mx-n5">
+              <div class="col px-1 border bg-danger">cont px-4 row mx-n5 col px-1 col FAILS 
+                <div bg-danger> Same as above with col-subDiv no padding </div>
+              </div>
+              <div class="col py-3 px-1 border bg-light">Custom column padding
+                <div bg-success> Same as above with col-subDiv no padding </div>                
+              </div>
+            </div>
+          </div>
+
+          <div class="container px-4">
+            <div class="row mx-n5">
+              <div class="col px-3 border bg-danger">
+                <div bg-danger> cont px-4 row mx-n5 col px-3 col-div - NO col text FAILs </div>
+              </div>
+              <div class="col px-3 border bg-light">
+                <div bg-light> Same as above with col-subDiv text  </div>                
+              </div>
+            </div>
+          </div>
+
+          <div class="container px-4"></div>
+            <div class="row mx-n5">
+              <div class="col px-3 border bg-danger">
+                <div bg-danger> cont px-4 row mx-n5 col px-3 col-div text FAILS </div>
+              </div>
+              <div class="col px-3 border bg-light">
+                <div class="bg-light"> Same as above but rows and cols AFTER closed container  </div>                
+              </div>
+            </div>
+
+        <div class="container px-4"></div>
+            <div class="row mx-n5">
+              <div class="col px-3"> 
+                <div class="bg-success"> cont px-4 row mx-n5 col px-3 col-subdiv NO text WORKS </div>
+              </div>
+              <div class="col px-3">
+                <div class="bg-light"> Closed container-div REMOVED border no col-subdiv px </div>                
+              </div>
+            </div>
+
+            <div class="container px-5"></div>
+            <div class="row mx-n5">
+              <div class="col px-5"> 
+                <div class="bg-success">cont px5 row mxn5 col px3 col-subdiv no px-text OK</div>
+              </div>
+              <div class="col px-5">
+                <div class="bg-warning"> Closed container-div no border no col-subdiv px  </div>                
+              </div>
+              <div class="col px-5">
+                <div class="bg-light"> All px mx SAME at 5 </div>                
+              </div>
+            </div>
+
+        <div class="container px-4">
+            <div class="row mx-n5">
+              <div class="col px-3"> 
+                <div class="bg-success"> cont px-4 row mx-n5 col px-3 col-subdiv NO text WORKS </div>
+              </div>
+              <div class="col px-3">
+                <div class="bg-light"> Same but unClosed container </div>                
+              </div>
+            </div>
+        </div>
+
+        <div class="container px-4">
+            <div class="row mx-n5">
+              <div class="col px-3">
+                <div class="border bg-success"> cont px-4 row mx-n5 col px-3 col-div - WORKS </div>
+              </div>
+              <div class="col px-3 bg-light">
+                <div class="border bg-light"> Same as above but unclosed container  </div>                
+              </div>
+            </div>
+        </div>
+
+        <div class="container px-4"></div>
+            <div class="row mx-n5">
+              <div class="col px-5">
+                <div class="border bg-success"> cont px-4 row mx-n5 col px-5 col-div - NO col text WORKS </div>
+              </div>
+              <div class="col px-5">
+                <div class="border bg-light"> Same as above but col px-5 instead of px-3  </div>                
+              </div>
+        </div>
+
+        <div class="container px-4"></div>
+        <div class="row mx-n5">
+          <div class="col px-5">
+            <div class="border bg-success"> cont px-4 row mx-n5 col px-5 col-div - NO col text WORKS </div>
+          </div>
+          <div class="col px-5">
+            <div class="border bg-light"> Same as above but different indentation.  </div>                
+          </div>
+        </div>
+
+        <!-- most notable working class, no px in col-subdiv -->
+        <div class="container px-4"></div>
+        <div class="row mx-n5">
+          <div class="col px-5">
+              <div class="border bg-success">cont px-4 row mx-n5 col px-5 col-div no px copied from below WORKS  </div>
+          </div>
+          <div class="col px-5">
+              <div class="border bg-light">p-3 column-div padding</div>
+          </div>
+        </div>
+
+        <div class="container bg-danger">
+            <div class="row gx-3">
+              <div class="col px-2 py-3 border bg-danger">Row gx-3 col px-2 FAILS</div>
+              <div class="col px-2 py-3 border bg-light">No cont px wont work</div>
+            </div>
+        </div>
+          
+        <!-- Here down generally work ============================================= -->
+        <div class="container px-4"></div>
+          <div class="row mx-n5">
+            <div class="col px-5">
+                <div class="p-3 border bg-success">cont px-4 row mx-n5 col px-5 col-div p-3 WORKS </div>
+            </div>
+            <div class="col px-5">
+                <div class="p-3 border bg-light">p-3 column-div </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- most notable working class, no px in col-subdiv -->
+        <div class="container px-4"></div>
+        <div class="row mx-n5">
+          <div class="col px-5">
+              <div class="border bg-success">cont px-4 row mx-n5 col px-5 col-div no px WORKS  </div>
+          </div>
+          <div class="col px-5">
+              <div class="border bg-light">p-3 column-div padding</div>
+          </div>
+        </div>
+        
+        <div class="container"></div>
+          <div class="row">
+            <div class="col">
+                <div class="p-3 border bg-success">Only col-div p-3 WORKS </div>
+            </div>
+            <div class="col">
+                <div class="p-3 border bg-light">p-3 column-div padding</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container px-4">
+            <div class="row gx-5">
+              <div class="col">
+               <div class="p-3 border bg-light">Row gx-5 col-div p-3 padding</div>
+              </div>
+              <div class="col">
+                <div class="p-3 border bg-light">Custom column padding</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Samples with web references =================================================== -->
+          <div class="container px-4">
+            <div class="row gx-5">
+              <div class="col">
+               <div class="p-3 border bg-success">unclosed contPX4 rowGX5 subdivP3 border+text</div>
+              </div>
+              <div class="col">
+                <div class="p-3 border bg-light">getbootstrap.com/docs/5.0/layout/gutters/</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container px-4">
+            <div class="row gx-5">
+              <div class="col">
+               <div class="p-3 border bg-success">Custom column padding WORKS </div>
+              </div>
+              <div class="col">
+                <div class="p-3 border bg-light">getbootstrap.com/docs/5.0/layout/gutters/?#horizontal-gutters</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mx-md-n5">
+            <div class="col px-md-5"><div class="p-3 border bg-success">NO container at all - WORKS </div></div>
+            <div class="col px-md-5"><div class="p-3 border bg-light">getbootstrap.com/docs/4.3/utilities/spacing/</div></div>
+          </div>
+
+          <div class="container px-4">
+            <div class="row gx-5">
+              <div class="col">
+                <div class="p-3 bg-success">Custom column padding</div>
+              </div>
+              <div class="col">
+                <div class="p-3 bg-info"> mdbootstrap.com/docs/standard/layout/gutters/ </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container px-4">
+            <div class="row gx-5">
+              <div class="col">
+                <div class="p-3 bg-success">Custom column padding</div>
+              </div>
+              <div class="col">
+                <div class="p-3"> mdbootstrap.com/how-to/bootstrap/columns-space/ </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container px-4">
+            <div class="row gx-5">
+              <div class="col">
+               <div class="p-3 border bg-success">Custom column padding</div>
+              </div>
+              <div class="col">
+                <div class="p-3 border bg-light"> typeerror.org/docs/bootstrap~5/layout/gutters/index#google_vignette </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container px-lg-5">
+            <div class="row mx-lg-n5">
+              <div class="col py-3 px-lg-5 border bg-warning"> Example only shows gutters, not col margins! </div>
+              <div class="col py-3 px-lg-5 border bg-light"> getbootstrap.com/docs/4.3/layout/grid/#gutters</div>
+            </div>
+          </div>
+
+        <!-- following fails even when inside row div -->
+        <div class="row">
+          <div class="col">
+            <div class="d-flex rounded bg-light align-items-center justify-content-between">
+               <h5 class="h-full p-4 text-uppercase fs-6 bg-warning"> MJS
+                C stackoverflow.com/questions/72783641/gutter-horizontally-not-working-with-bootstrap-5</h5>
+               <span class="bg-warning p-4 rounded-end">06</span>
+             </div>
+          </div>
+        </div>
+
+    </main>
+
+    <script src="./assets/js/source.js"></script>
+</body>    
+</html>

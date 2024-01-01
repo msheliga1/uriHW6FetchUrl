@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mike Sheliga 12.30.23 URI hw6 weather dashboard using jQuery-openweatherapi-bootstrap -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Per bootstrap webpage, add this at the top, first inside head tag -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- hostgator.com/blog/why-you-should-only-load-jquery-from-google-libraries says its faster as more often cached, w3 also uses google -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> <!-- w3 puts this in head -->    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> <!-- google=EVIL use cdnjs instead. -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" 
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"    
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" 
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <title>Mike Sheliga's 5 Day Weather Dashboard</title>
+</head>
+<body>
+    <header>
+        <!-- container fluid => fullwidth in bs, bg-primary works, bg-blue does not -->
+        <!-- use "m-3" not m3 for margin - Only defined 1 thru 5 -->
+        <div class="container-fluid bg-primary p-3 mb-3"> 
+            <!-- text-center works here, even though h3 is within non-centered container-fluid -->
+            <!-- Dont add color here, as it only is same height as text (unless padded )-->
+            <h2 class="text-center"> Mike Sheliga's 5 Day Weather Dashboard  </h2>
+        </div>
+    </header>
+
+    <!-- If cols not within a row, they dont seem to work (display all in center) -->
+    <main>
+    <!-- Need container-fluid, or else get very large x-margins - Arrghhs Dont do px-0 as it stops text wrap -->
+    <div class="container-fluid px-sm-1 px-md-2 px-lg-3 bg-warning">  <!-- has container padding only for large??? -->
+        <section class="row mx-sm-n1 mx-md-n2 mx-lg-3" id="main-row">
+          <!-- Mother F****** - even small p-1 m-1 in column div results in things not fitting on the same line. What BLEEP. -->
+          <section class="col-12 col-sm-4 col-md-3 col-lg-2 px-sm-1 px-md-2 px-lg-3 bg-primary" id="city-info"> 
+          <!-- div class="col-12 col-sm-4 col-md-3 col-lg-2 px-1 px-sm-2 px-md-3 px-lg-5 bg-primary" id="city-info">  -->
+              <!-- Center sub-items: Dont work list. (1) mx-auto (2) justify-content-center w container -->
+              <!-- Row justify-content-center makes everthing inside into one line. Arghhh. -->
+              <!-- Container makes sub-elements all on separate liens, but wont work w justify-content-center -->
+              <div class="container justify-content-center" id="city-search">
+                  <!-- putting h5, form in a row puts them on the same line ... Container puts blocks on after another -->
+                  <h5 class="text-center"> Search for a City. </h5>
+                  <form class="my-1">  
+                      <div class="form-group">
+                          <!-- normally would have a label ... but keeping h5 text above this. -->
+                          <input type="text" width="90%" value="Enter City" id="text-search-box"> 
+                      </div>
+                      <div class="row justify-content-center">  <!-- container jcc wont work here -->
+                          <!-- must pass window.event or event to onclick method, not just ev -->
+                          <button type="submit" onclick="searchTextButtonClickFunction(event)" class="btn bg-info" 
+                              id="city-search-button"> Search </button>
+                      </div>
+                  </form>
+                  <!-- Button: btn class produces nice round corners, centered text, p-2 (but no color!)-->
+                  <!-- container-fluid makes button as wide as container. -->
+                  <!-- Centering: mx-auto wont center, likely cause non-fixed size -->
+                  <!-- tried enclosing in div with justify-content-center. Works only-if is a row! -->
+                  <!-- <button class="btn bg-primary" id="city-search-button2"> BtnOut2 </button> -->
+                  <!-- <button class="btn bg-primary" id="city-search-button3"> OutDiv3 </button> -->
+                  <div class="row justify-content-center"> 
+                      <!-- dBlock does NOT work on individual pars, nor on h5s -->
+                      <!-- dBlock works on enclosing row (b4 or aft jccenter) puts enclosed btn, p, h5 on separate lines (but always screws jccenter) -->
+                      <!-- for buttons, you also need a d-block for every other! btn -->
+                      <!-- Enclosing d-block works, but messes up cen tering ... almost requires enclosing div. Arghh. -->
+                      <!-- moved following btn inside from, type=submit, at last minute.
+                      <button class="btn bg-primary" id="city-search-button"> Search </button> -->
+                  </div>               
+              </div> <!-- end div city-search (label, form with text-line and button) -->
+  
+              <div class="bg-danger p-1 my-1 mx-1" id="saved-data-div"> <p> Saved Cities </p>
+              </div>
+          </section> <!-- cols city-info -->
+          <section class="col-12 col-sm-8 col-md-9 col-lg-10 px-sm-1 px-md-2 px-lg-3 bg-success" id="weather-info">
+            <div class="border border-dark">
+                <!-- in html this would be style="display:flex" -->
+                <div class="d-flex" id="city-date-icon">  <!-- d-inline wont work here even for plains sub-divs -->
+                    <div> <h5 id="city-date"> City and Date </h5> </div>      
+                    <span class="pl-2" id="today-icon"> 
+                        <img id="icon0" src="" alt=""> <!--  values filled in via jQuery -->
+                    </span>
+                </div>
+                <span> <p>Temp: </p></span>
+                <span> <p>Wind: </p></span>
+                <span> <p>Humidity: </p></span><
+            </div>
+            <div class="container"> <!-- need this for auto-margins -->
+              <div class="row bg-primary">
+                  <p class="bg-warning"> Today's Weather Info </p>
+              </div>
+              <div class="row bg-warning">
+                    <div class="col"> 
+                        <div class="card bg-dark text-white">
+                            <div class="card-body">
+                                <div class="card-tile" id="date1"> Card Title 1</div>
+                                <div> <img id="icon1" src="" alt=""> </div>
+                                <p> Temp: <span id="temp1"></span> F </p>
+                                <p> Wind: <span id="wind1"></span> MPH </p>
+                                <p> Humidity: <span id="hum1"></span> % </p>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col"> 
+                        <div class="card bg-dark text-white">
+                            <div class="card-body">
+                                <div class="card-tile" id="date2"> Card Title 1</div>
+                                <div> <img id="icon2" src="" alt=""> </div>
+                                <p> Temp: <span id="temp2"></span> F </p>
+                                <p> Wind: <span id="wind2"></span> MPH </p>
+                                <p> Humidity: <span id="hum2"></span> % </p>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="col"> <div class="text-center bg-info">card 3 </div> </div>
+                    <div class="col"> <div class="text-center bg-info">card 4 </div> </div>
+                    <div class="col"> <div class="text-center bg-info">card 6 </div> </div>
+              </div>
+            </div> <!-- div weather-info container -->
+          </section> <!-- col weather info -->
+        </section> <!-- main row -->
+      </div> <!-- main container -->
+
+
+</main>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>    
+</html>
