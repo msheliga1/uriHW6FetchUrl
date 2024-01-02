@@ -33,95 +33,130 @@
     <!-- If cols not within a row, they dont seem to work (display all in center) -->
     <main>
     <!-- Need container-fluid, or else get very large x-margins - Arrghhs Dont do px-0 as it stops text wrap -->
-    <div class="container-fluid px-sm-1 px-md-2 px-lg-3 bg-warning">  <!-- has container padding only for large??? -->
-        <section class="row mx-sm-n1 mx-md-n2 mx-lg-3" id="main-row">
-          <!-- Mother F****** - even small p-1 m-1 in column div results in things not fitting on the same line. What BLEEP. -->
-          <section class="col-12 col-sm-4 col-md-3 col-lg-2 px-sm-1 px-md-2 px-lg-3 bg-primary" id="city-info"> 
-          <!-- div class="col-12 col-sm-4 col-md-3 col-lg-2 px-1 px-sm-2 px-md-3 px-lg-5 bg-primary" id="city-info">  -->
-              <!-- Center sub-items: Dont work list. (1) mx-auto (2) justify-content-center w container -->
-              <!-- Row justify-content-center makes everthing inside into one line. Arghhh. -->
-              <!-- Container makes sub-elements all on separate liens, but wont work w justify-content-center -->
-              <div class="container justify-content-center" id="city-search">
-                  <!-- putting h5, form in a row puts them on the same line ... Container puts blocks on after another -->
-                  <h5 class="text-center"> Search for a City. </h5>
-                  <form class="my-1">  
-                      <div class="form-group">
-                          <!-- normally would have a label ... but keeping h5 text above this. -->
-                          <input type="text" width="90%" value="Enter City" id="text-search-box"> 
-                      </div>
-                      <div class="row justify-content-center">  <!-- container jcc wont work here -->
-                          <!-- must pass window.event or event to onclick method, not just ev -->
-                          <button type="submit" onclick="searchTextButtonClickFunction(event)" class="btn bg-info" 
-                              id="city-search-button"> Search </button>
-                      </div>
-                  </form>
-                  <!-- Button: btn class produces nice round corners, centered text, p-2 (but no color!)-->
-                  <!-- container-fluid makes button as wide as container. -->
-                  <!-- Centering: mx-auto wont center, likely cause non-fixed size -->
-                  <!-- tried enclosing in div with justify-content-center. Works only-if is a row! -->
-                  <!-- <button class="btn bg-primary" id="city-search-button2"> BtnOut2 </button> -->
-                  <!-- <button class="btn bg-primary" id="city-search-button3"> OutDiv3 </button> -->
-                  <div class="row justify-content-center"> 
-                      <!-- dBlock does NOT work on individual pars, nor on h5s -->
-                      <!-- dBlock works on enclosing row (b4 or aft jccenter) puts enclosed btn, p, h5 on separate lines (but always screws jccenter) -->
-                      <!-- for buttons, you also need a d-block for every other! btn -->
-                      <!-- Enclosing d-block works, but messes up cen tering ... almost requires enclosing div. Arghh. -->
-                      <!-- moved following btn inside from, type=submit, at last minute.
-                      <button class="btn bg-primary" id="city-search-button"> Search </button> -->
-                  </div>               
-              </div> <!-- end div city-search (label, form with text-line and button) -->
-  
-              <div class="bg-danger p-1 my-1 mx-1" id="saved-data-div"> <p> Saved Cities </p>
-              </div>
-          </section> <!-- cols city-info -->
-          <section class="col-12 col-sm-8 col-md-9 col-lg-10 px-sm-1 px-md-2 px-lg-3 bg-success" id="weather-info">
-            <div class="border border-dark">
-                <!-- in html this would be style="display:flex" -->
-                <div class="d-flex" id="city-date-icon">  <!-- d-inline wont work here even for plains sub-divs -->
-                    <div> <h5 id="city-date"> City and Date </h5> </div>      
-                    <span class="pl-2" id="today-icon"> 
-                        <img id="icon0" src="" alt=""> <!--  values filled in via jQuery -->
-                    </span>
-                </div>
-                <span> <p>Temp: </p></span>
-                <span> <p>Wind: </p></span>
-                <span> <p>Humidity: </p></span><
+    <div class="container-fluid px-sm-1 px-md-2 px-lg-3">  <!-- has container padding only for large??? -->
+    <section class="row mx-sm-n1 mx-md-n2 mx-lg-3" id="main-row">
+      <!-- Mother F****** - even small p-1 m-1 in column div results in things not fitting on the same line. What BLEEP. -->
+      <section class="col-12 col-sm-4 col-md-3 col-lg-2 px-sm-1 px-md-2 px-lg-2" id="city-info"> 
+      <!-- div class="col-12 col-sm-4 col-md-3 col-lg-2 px-1 px-sm-2 px-md-3 px-lg-5 bg-primary" id="city-info">  -->
+            <!-- Center sub-items: Dont work list. (1) mx-auto (2) justify-content-center w container -->
+            <!-- Row justify-content-center makes everthing inside into one line. Arghhh. -->
+            <!-- Container makes sub-elements all on separate liens, but wont work w justify-content-center -->
+            <div class="justify-content-center" id="city-search">
+              <!-- putting h5, form in a row puts them on the same line ... Container puts blocks on after another -->
+                <div> <h6 class="text-center"> Search for a City. </h6> </div>
+                <form class="justify-content-center">  
+                    <div class="d-flex form-group justify-content-center">
+                        <!-- normally would have a label ... but keeping h5 text above this. -->
+                        <input type="text" value="Enter City" id="text-search-box" size="15"> 
+                    </div>
+                    <!-- Finally got enclosed button centered with d-flex. Arghhh! -->
+                    <div class="d-flex justify-content-center mx-auto">  <!-- container jcc wont work here -->
+                      <!-- must pass window.event or event to onclick method, not just ev -->
+                      <!-- Button is block element, very hard to get centered. mx-auto wont work. Arghhh. -->
+                      <button type="submit" onclick="searchTextButtonClickFunction(event)" class="btn mx-auto bg-info" 
+                          id="city-search-button"> Search </button>
+                    </div>
+                </form>
+             <!-- Button: btn class produces nice round corners, centered text, p-2 (but no color!)-->
+              <!-- container-fluid makes button as wide as container. -->
+              <!-- Centering: mx-auto wont center, likely cause non-fixed size -->
+              <!-- tried enclosing in div with justify-content-center. Works only-if is a row! -->
+              <!-- <button class="btn bg-primary" id="city-search-button2"> BtnOut2 </button> -->
+              <!-- <button class="btn bg-primary" id="city-search-button3"> OutDiv3 </button> -->
+              <!-- <div class="row justify-content-center"> -->
+                  <!-- dBlock does NOT work on individual pars, nor on h5s -->
+                  <!-- dBlock works on enclosing row (b4 or aft jccenter) puts enclosed btn, p, h5 on separate lines (but always screws jccenter) -->
+                  <!-- for buttons, you also need a d-block for every other! btn -->
+                  <!-- Enclosing d-block works, but messes up cen tering ... almost requires enclosing div. Arghh. -->
+                  <!-- moved following btn inside from, type=submit, at last minute.
+                  <button class="btn bg-primary" id="city-search-button"> Search </button> -->
+              <!-- </div>    -->             
+          </div> <!-- end div city-search (label, form with text-line and button) -->
+          <div class=" pt-3 my-1 mx-2"> <h5> Saved Cities </h5> </div>
+          <div class=" p-1 my-1 mx-2" id="saved-data-div"> </div>
+      </section> <!-- cols city-info -->
+      <section class="col-12 col-sm-8 col-md-9 col-lg-10 px-sm-1 px-md-2" id="weather-info">
+        <div class="border p-sm-1 p-md-2 border-dark">
+            <!-- in html this would be style="display:flex" d-flex puts all on one line -->
+            <div class="d-flex" id="city-date-icon">  <!-- d-inline wont work here even for plains sub-divs -->
+                <span class=""    > <h4 id="city-date"> </h4> </span>   <!-- pad because adding space very hard --> 
+                <span class="pl-1"> <h4 id="city-err"> CErr </h4> </span>   
+                <span class="pl-1"> <h4 id="date0"   > Date </h4> </span>  
+                <span class="pl-1"> <h4 id="date-err"> Derr </h4> </span>       
+                <span class="pl-2" id="today-icon"> 
+                    <img id="icon0" src="" alt=""> <!--  values filled in via jQuery -->
+                </span>
             </div>
-            <div class="container"> <!-- need this for auto-margins -->
-              <div class="row bg-primary">
-                  <p class="bg-warning"> Today's Weather Info </p>
-              </div>
-              <div class="row bg-warning">
-                    <div class="col"> 
-                        <div class="card bg-dark text-white">
-                            <div class="card-body">
-                                <div class="card-tile" id="date1"> Card Title 1</div>
-                                <div> <img id="icon1" src="" alt=""> </div>
-                                <p> Temp: <span id="temp1"></span> F </p>
-                                <p> Wind: <span id="wind1"></span> MPH </p>
-                                <p> Humidity: <span id="hum1"></span> % </p>
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="col"> 
-                        <div class="card bg-dark text-white">
-                            <div class="card-body">
-                                <div class="card-tile" id="date2"> Card Title 1</div>
-                                <div> <img id="icon2" src="" alt=""> </div>
-                                <p> Temp: <span id="temp2"></span> F </p>
-                                <p> Wind: <span id="wind2"></span> MPH </p>
-                                <p> Humidity: <span id="hum2"></span> % </p>
-                            </div>
-                        </div> 
-                    </div>
-                    <div class="col"> <div class="text-center bg-info">card 3 </div> </div>
-                    <div class="col"> <div class="text-center bg-info">card 4 </div> </div>
-                    <div class="col"> <div class="text-center bg-info">card 6 </div> </div>
-              </div>
-            </div> <!-- div weather-info container -->
-          </section> <!-- col weather info -->
-        </section> <!-- main row -->
-      </div> <!-- main container -->
+            <p> Temperature: <span id="temp0">  </span></p>
+            <p> Wind:        <span id="wind0">  </span> </p>
+            <p> Humidity:    <span id="humid0"> </span> </p>
+        </div>
+        <div class="container"> <!-- need this for auto-margins -->
+          <div class="row">
+              <p class="px-sm-2 px-md-3 px-lg-4"> <h4 class="pt-2"> 5 Day Forecast <h4> </h4></p>
+          </div>
+          <div class="row small">  <!-- py only applies to full 5 row, not 3 row followed by 2 -->
+                <div class="col my-2"> 
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <div class="card-tile" id="date1"> </div>
+                            <!-- <small>  <!-- doing class="small" and <small> makes things tiny -->
+                            <div> <img id="icon1" src="" alt="WeatherIcon"> </div>
+                            <p> Temp:  <span id="temp1"> </span>F </p>
+                            <p> Wind:  <span id="wind1"> </span> MPH </p>
+                            <p> Humid: <span id="humid1"></span>% </p> <!-- note no space before % -->
+                        </div>
+                    </div> 
+                </div>
+                <div class="col my-2"> 
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <div class="card-tile" id="date2"> </div>
+                            <div> <img id="icon2" src=" " alt="WeatherIcon2"> </div>
+                            <p> Temp:  <span id="temp2" ></span>F </p>
+                            <p> Wind:  <span id="wind2" ></span> MPH </p>
+                            <p> Humid: <span id="humid2"></span>% </p> <!-- note no space before % -->
+                        </div>
+                    </div> 
+                </div>
+                <div class="col my-2"> 
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <div class="card-tile" id="date3"> </div>
+                            <div> <img id="icon3" src=" " alt="WeatherIcon3"> </div>
+                            <p> Temp:  <span id="temp3" ></span>F </p>
+                            <p> Wind:  <span id="wind3" ></span> MPH </p>
+                            <p> Humid: <span id="humid3"></span>% </p> <!-- note no space before % -->
+                        </div>
+                    </div> 
+                </div>
+                <div class="col my-2"> 
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <div class="card-tile" id="date4"> </div>
+                            <div> <img id="icon4" src=" " alt="WeatherIcon4"> </div>
+                            <p> Temp:  <span id="temp4" ></span>F </p>
+                            <p> Wind:  <span id="wind4" ></span> MPH </p>
+                            <p> Humid: <span id="humid4"></span>% </p> <!-- note no space before % -->
+                        </div>
+                    </div> 
+                </div>
+                <div class="col my-2"> 
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <div class="card-tile" id="date5"> </div>
+                            <div> <img id="icon5" src=" " alt=" "> </div> <!-- blank string messes thigns up -->
+                            <p> Temp:  <span id="temp5" ></span>F </p>
+                            <p> Wind:  <span id="wind5" ></span> MPH </p>
+                            <p> Humid: <span id="humid5"></span>% </p> <!-- note no space before % -->
+                        </div>
+                    </div> 
+                </div>
+          </div>
+        </div> <!-- div weather-info container -->
+      </section> <!-- col weather info -->
+    </section> <!-- main row -->
+  </div> <!-- main container -->
 
 
 </main>
