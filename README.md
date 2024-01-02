@@ -1,13 +1,13 @@
-# uriHW6FetchUrl
-URI Bootcamp hw 6 Due 1.2.24 - Fetch URLs - Weather App - 5 Day Forecast for User Input City 
-Michael Sheliga - Started Sat 12.30.23 - Due Tues 1.2.24
+# uriHW6FetchWeather5Day   
+URI Bootcamp hw 6 Due 1.2.24 - Fetch URLs - Weather App - 5 Day Forecast for User Input City   
+Michael Sheliga - Started Sat 12.30.23 - Due Tues 1.2.24   
 
 This repo is for the University of Richmond (URI) coding bootcamp.   
 
-## Link to Repo and Deployed Webpage
-Link to GitHub Repo: https://github.com/msheliga1/uriHW6FetchUrl
-Link to deployed github.io site. https://msheliga1.github.io/uriHW6FetchUrl  
-Link to screenshot of deployed github.io site. ![HW 6 Fetch APIs GitHub Deployed Start Screenshot](./assets/images/WorkingScreenshot.PNG)   
+## Link to Repo and Deployed Webpage   
+Link to GitHub Repo: https://github.com/msheliga1/uriHW6FetchWeather5Day   
+Link to deployed github.io site. https://msheliga1.github.io/uriHW6FetchWeather5Day    
+Link to screenshot of deployed github.io site. ![HW 6 Fetch APIs GitHub Deployed Start Screenshot](./assets/images/WorkingScreenshot.PNG)    
 Link to screenshot of 2. ![HW 6 Fetch APIs GitHub Results Screenshot](./assets/images/ResultsScreenshot.PNG)   
 
 ## Project Goals  
@@ -17,9 +17,9 @@ API will then be used to get the 5 day weather forecast. If the city exists it w
 A sample API call: api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key} 2603ab2cb7ddafbe94e3a350338be59b  
 Note that using this key in a public repo effectively makes the openweathermap key public.  
 
-==============================================================================================================================  
+==============================================================================================================================   
 ## Technical Project Details  
-==============================================================================================================================  
+==============================================================================================================================   
 ## Github:   
     Create Repo (github, repositories => New)   
         - Dont Make this a shared repo.  
@@ -47,21 +47,21 @@ Note that using this key in a public repo effectively makes the openweathermap k
     Make Sure it Works   
     Insert Screenshot X2 of deployment into readme file.  
   
-## Tools and Technologies Used - HTML, CSS Bulma Framework and JQuery   
+## Tools and Technologies Used - HTML, CSS BootStrap Framework and JQuery   
     Github - Could use branches  
     Create/Modify HTML  
     Modals - May use, may not  
-    CSS Framwork Bootstrap  
+    CSS Framwork Bootstrap   
     Javascript/JQuery   
     Local Storage   
-    Agile - Try to assign a little work at a time.  
+    Agile - Try to assign a little work at a time.   
 
 ## Acceptance Criteria   
 -----------------------  
-weather outlook for multiple cities  
-weather dashboard with form inputs, search for a city => current and future conditions for city and city is added to the search history  
+Weather outlook for multiple cities   
+weather dashboard with form inputs, search for a city => current and future conditions for city and city is added to the search history   
 Current weather conditions include: city name, the date, an icon of weather conditions, temperature, humidity, and wind speed  
-Future weather conditions include: a 5-day forecast with date, an icon of weather conditions, temperature, wind speed, and humidity  
+Future weather conditions include: a 5-day forecast with date, an icon of weather conditions, temperature, wind speed, and humidity   
 Click on a city in search history:  presented with current and future conditions for that city  
 
 
