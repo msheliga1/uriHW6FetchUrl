@@ -8,7 +8,7 @@ This repo is for the University of Richmond (URI) coding bootcamp.
 Link to GitHub Repo: https://github.com/msheliga1/uriHW6FetchWeather5Day   
 Link to deployed github.io site. https://msheliga1.github.io/uriHW6FetchWeather5Day    
 Link to screenshot of deployed github.io site. ![HW 6 Fetch APIs GitHub Deployed Start Screenshot](./assets/images/WorkingScreenshot.PNG)    
-Link to screenshot of 2. ![HW 6 Fetch APIs GitHub Results Screenshot](./assets/images/ResultsScreenshot.PNG)   
+Link to 2nd screenshot. ![HW 6 Fetch APIs GitHub Results Screenshot](./assets/images/ResultsScreenshot.PNG)   
 
 ## Project Goals  
 Use the 3rd party openweatehrmap API, jQuery, fetch, local storage and a the BootStrap CSS framework, to create a 5-day weather application.  
