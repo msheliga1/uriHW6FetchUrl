@@ -57,7 +57,7 @@ function searchForCity(cityName) {
     myLog("Open weather map city request url: " + requestUrl);
     fetch(requestUrl)
         .then(function (response) {
-            console.log("Weather API Response is: " + response + " Status: " + response.status);
+            myLog("Weather API Response is: " + response + " Status: " + response.status);
             if (!response.ok) {
                 myLog("Bad response status ... returning status. ");
                 // whether you set this or not, whether 200 or 404 you always get a .cod in the result.
@@ -66,7 +66,7 @@ function searchForCity(cityName) {
             return response.json(); // cod=404 if bad, 200 if good, etc.
         })
         .then(function (data) {
-            console.log(data);  // this shows up in console as collaspable-expandable. Better than stringify.
+            myLog(data);  // this shows up in console as collaspable-expandable. Better than stringify.
             if (data.cod >= 300) {
                 myLog("No weather results found for " + cityName + " ... returning");
                 setCityNotFoundInDom(cityName);
@@ -93,7 +93,7 @@ function fetchWeatherForecast(cityName, lat, lon) {
 
     fetch(requestUrl)
     .then(function (response) {
-                console.log("Weather API forecast Response is: " + response + " Status: " + response.status);
+                myLog("Weather API forecast Response is: " + response + " Status: " + response.status);
                 if (!response.ok) {
                     response.textContent = response.status; 
                 }
@@ -346,7 +346,7 @@ function getLocallyStoredDataCount(prefix) {
  
 // see if the value is in local storage.  MJS 12.30.23 
 function locallyStoredValueExists(value) {
-    console.log("Searching for locally stored value .... " + value);
+    myLog("Searching for locally stored value .... " + value);
     var count = getLocallyStoredDataCount(localStorePrefix);
     for (i=1; i<=count; i++ ) {
         if (localStorage.getItem(localStorePrefix+i).toLowerCase() === value.toLowerCase()) {  // no trim or lowerCase
@@ -370,7 +370,7 @@ function clearLocalStorage(prefix) {
 // Accesory Routines 
 // ------------------------------------------------
 function myLog(str) {  // to easily turn debugging on/off
-    console.log(str); 
+    // console.log(str); 
 }
 
 // convert kelvin temperature to Fahrenheit
